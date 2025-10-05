@@ -1,0 +1,47 @@
+<!-- Alana Cristina Muller S1569092 -->
+<!-- Signup Form Page -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body>
+    <section>
+            <div th:if="${param.registered}">
+                <div class="alert alert-success" style="color: #206a2f; text-align:center; margin-bottom:12px;">Registration successful — please log in.</div>
+            </div>
+    <form th:action="@{/signup}" th:method="post"> <!-- Signup Form -->
+            <h1>Create Account</h1>
+            
+            <div class="inputbox">
+                <label for="username">Username:</label>
+                <i class="fi fi-rr-user"></i>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="inputbox">
+                <label for="email">Email:</label>
+                <i class="fi fi-rr-envelope"></i>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="inputbox">
+                <label for="password">Password:</label>
+                <i class="fi fi-rr-lock"></i>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit">Sign Up</button>
+            
+            <div class="register"> <!-- Link to login page -->
+                <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

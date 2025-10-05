@@ -1,0 +1,59 @@
+<!-- Alana Cristina Muller S1569092 -->
+<!-- Welcome Page -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome - Assessment 2 Wiki</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* small override to make welcome content slightly wider than the forms */
+        section.welcome {
+            max-width: 700px;
+            text-align: left;
+        }
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .welcome p.lead {
+            color: #555;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+        .welcome .actions {
+            display:flex;
+            gap:12px;
+            margin-top:16px;
+        }
+        .btn-ghost {
+            background: transparent;
+            border: 2px solid rgba(102,126,234,0.12);
+            color: #333;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight:600;
+        }
+    </style>
+</head>
+<body>
+    <section class="welcome">
+        <h1>Assessment 2 Wiki</h1>
+        <p class="lead">Welcome to the BIT235 Assessment 2 Wiki. This site hosts articles. Use the links below to browse pages or manage your account.</p>
+
+        <div class="actions"><!-- Navigation Actions -->
+            <a class="btn-ghost" th:href="@{/articles}">View Articles</a>
+            <a class="btn-ghost" th:href="@{/yourAccount}">Your Account</a>
+            <a class="btn-ghost" th:href="@{/login}">Log out</a>
+        </div>
+
+        <hr style="margin-top:22px; border:none; border-top:1px solid #eee;">
+        <!-- Footer -->
+        <p style="margin-top:18px; color:#666; font-size:14px;">&copy; 2025 Melbourne Polytechnic - BIT235</p>
+    </section>
+</body>
+</html>
