@@ -10,24 +10,23 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <style>
         /* minimal overrides to make the global form card look appropriate for errors */
-        body { background: linear-gradient(135deg,#f8d7da 0%, #f0b4b4 100%); }
         section { max-width: 700px; }
         .error-title { color: #8b1720; font-size: 28px; margin-bottom: 8px; }
         .error-details { color:#6b2020; }
     </style>
 </head>
 <body>
-    <section>
-        <!-- Simple error message -->
-        <h1 class="error-title">Oops — <span th:text="${error}">Error</span></h1>
-        <p class="error-details"><strong>Status:</strong> <span th:text="${status}">500</span></p>
-        <p class="error-details" th:if="${message}"><strong>Message:</strong> <span th:text="${message}">Unexpected error</span></p>
-        <p class="error-details" th:if="${path}"><strong>Requested path:</strong> <span th:text="${path}">/path</span></p>
-        <!-- Optional paths -->
-        <div style="margin-top:18px;">
-            <a th:href="@{/login}" class="btn-ghost">Go back to Login</a>
-            <a th:href="@{/welcome}" class="btn-ghost" style="margin-left:8px;">Home</a>
-        </div>
-    </section>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="centered">
+        <section>
+            <!-- Simple error message -->
+            <h1 class="error-title">Oops — <span th:text="${error}">Error</span></h1>
+            <p class="error-details"><strong>Status:</strong> <span th:text="${status}">500</span></p>
+            <p class="error-details" th:if="${message}"><strong>Message:</strong> <span th:text="${message}">Unexpected error</span></p>
+            <p class="error-details" th:if="${path}"><strong>Requested path:</strong> <span th:text="${path}">/path</span></p>
+        </section>
+    </div>
+    <section th:replace="~{fragments/footer :: siteFooter}"></section>    
 </body>
 </html>

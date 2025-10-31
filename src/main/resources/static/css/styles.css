@@ -7,10 +7,27 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-start: #fff4f6;  /* very pale rose */
+    --bg-end: #fdebee;    /* soft warm blush */
+    --card-bg: rgba(255,255,255,0.98);
+    --primary: #d58aa6;   /* dusty rose */
+    --primary-dark: #b76886; /* mauve accent */
+    --muted: #6b6166;     /* warm grey for text */
+    --border: #f5e6ea;    /* subtle card border */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
     min-height: 100vh;
+    padding: 20px;
+}
+
+/* helper to center a single card or section vertically/horizontally
+   use by wrapping the section: <div class="centered"><section>...</section></div> */
+.centered {
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,14 +35,14 @@ body {
 }
 
 section {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border);
 }
 
 form {
@@ -65,8 +82,8 @@ h1 {
 
 .inputbox input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+    border-color: #ff6fa3;
+    box-shadow: 0 0 12px rgba(255,111,163,0.18);
     transform: translateY(-2px);
 }
 
@@ -75,7 +92,7 @@ h1 {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #667eea;
+    color: var(--primary);
     font-size: 18px;
     pointer-events: none;
     margin-top: 12px;
@@ -84,14 +101,14 @@ h1 {
 button {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border: none;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     margin-top: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -99,7 +116,7 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 25px rgba(233, 79, 138, 0.25);
 }
 
 button:active {
@@ -110,24 +127,35 @@ button:active {
     text-align: center;
     margin-top: 25px;
     padding-top: 20px;
-    border-top: 1px solid #e1e5e9;
+    border-top: 1px solid #f0d9e3;
 }
 
 .register p {
-    color: #666;
+    color: var(--muted);
     font-size: 14px;
 }
 
 .register a {
-    color: #667eea;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
 }
 
 .register a:hover {
-    color: #764ba2;
+    color: var(--primary-dark);
     text-decoration: underline;
+}
+
+/* Ghost button used on welcome/error pages */
+.btn-ghost {
+    background: transparent;
+    border: 2px solid rgba(181,122,144,0.10);
+    color: #333;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 /* Responsive Design */
@@ -171,4 +199,194 @@ button:active {
 
 section {
     animation: fadeInUp 0.6s ease-out;
+}
+
+/* --- Site navbar and articles layout --- */
+.top-nav {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid #f0d9e3;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 14px 24px;
+}
+.nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    /* use grid for a predictable 3-column layout: brand / center links / actions */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    height: 56px; /* keeps consistent navbar height so logo can be 100% */
+}
+
+/* Prevent very large images from overflowing and allow the center column to shrink */
+.nav-inner { overflow: hidden; }
+.nav-inner > * { min-width: 0; }
+.nav-brand {
+    font-weight: 700;
+    color: #b76886;
+    text-decoration: none;
+    font-size: 18px;
+}
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-self: start;
+    max-width: 260px; /* keep brand area bounded so logo can't push others off-screen */
+}
+.nav-logo {
+    height: 100%;
+    width: auto;
+    display: block;
+}
+.brand-text {
+    display: inline-block;
+}
+
+.nav-brand svg { display: block; }
+.nav-brand { gap: 12px; }
+
+@media (max-width: 480px) {
+    .brand-text { display: none; }
+    .nav-logo { height: 44px; }
+}
+.nav-links {
+    display: flex;
+    gap: 18px;
+    justify-self: center; /* center the links column */
+}
+.nav-links a { white-space: nowrap; }
+.nav-links a {
+    color: #6b6166;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+.nav-links a.active,
+.nav-links a:hover {
+    background: linear-gradient(90deg, rgba(213,138,166,0.12), rgba(183,104,134,0.12));
+    color: #b76886;
+}
+.nav-actions {
+    display: flex;
+    gap: 8px;
+    justify-self: end; /* align actions to the right column */
+}
+
+.container.articles-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: transparent;
+    padding: 12px 20px 60px 20px;
+}
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+.page-header h1 {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
+}
+.muted {
+    color: var(--muted);
+    margin-top: 6px;
+}
+.search-bar {
+    display: flex;
+    gap: 8px;
+}
+.search-bar input {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e7d7de;
+    width: 220px;
+}
+.search-bar button {
+    padding: 10px 14px;
+    width: auto;
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.article-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+}
+.article-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.article-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+.article-summary {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+.read-more {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media (max-width: 720px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input {
+        width: 100%;
+        max-width: 420px;
+    }
+    /* Stack the navbar for small screens to avoid overlap */
+    .nav-inner {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+    .nav-links {
+        justify-self: start;
+        flex-wrap: wrap;
+    }
+    .nav-actions {
+        justify-self: start;
+    }
+    /* On small screens keep the logo smaller and allow links on next line */
+    .nav-brand { max-width: 160px; }
+    .nav-logo { max-width: 140px; height: auto; }
 }

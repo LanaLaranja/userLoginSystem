@@ -14,5 +14,4 @@ public class DemoApplication {
 		// creates the ApplicationContext, and scans for Spring components.
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
 }

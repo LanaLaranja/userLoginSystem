@@ -30,9 +30,26 @@ public class SecurityConfig {
         // allow anonymous access to static resources and signup endpoints,
         // configure the login page and redirect URLs.
         http
+
+                
                 .authorizeHttpRequests(auth -> auth
                 // allow unauthenticated access to common static resource folders
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/favicon.ico", "/signup", "/register").permitAll()
+                .requestMatchers(
+                    "/",
+                    "/error",
+                    "/articles",
+                    "/articles/**",
+                    "/article",
+                    "/article/**",
+                    "/categories",
+                    "/categories/**",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**",
+                    "/webjars/**",
+                    "/favicon.ico",
+                    "/signup",
+                    "/register").permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

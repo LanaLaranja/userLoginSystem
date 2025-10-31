@@ -1,0 +1,52 @@
+<!-- Alana Cristina Muller S1569092 -->
+<!-- Welcome Page -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* small override to make articles content slightly wider than the forms */
+        section.article {
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .article h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .article p.lead {
+            color: var(--muted);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .article .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header th:replace="~{fragments/navbar :: navbar}"></header>
+
+    <div class="centered">
+    <section class="article">
+        <h1 th:text="${article.title}">Article Title</h1>
+        <p th:text="${article.content}">Article Content</p>
+    </section>
+    </div>
+    <div><footer th:replace="fragments/footer :: siteFooter"></footer></div>
+</body>
+
+</html>

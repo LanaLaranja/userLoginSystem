@@ -1,0 +1,60 @@
+<!-- Alana Cristina Muller S1569092 -->
+<!-- Welcome Page -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bibble's Paradise</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* small override to make articles content slightly wider than the forms */
+        section.articles {
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .articles h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .articles p.lead {
+            color: var(--muted);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .articles .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <header th:replace="~{fragments/navbar :: navbar}"></header>
+
+    <div class="centered">
+        <section class="articles">
+            <h1>Bibble's Paradise</h1>
+            <h2>Latest Articles</h2>
+            <div th:each="a : ${latestArticles}">
+                <h3 th:text="${a.title}"></h3>
+                <p th:text="${#strings.abbreviate(a.content, 150)}"></p>
+                <a th:href="@{'/article/' + ${a.id}}">Read more</a>
+            </div>
+            <hr style="margin-top:22px; border:none; border-top:1px solid #eee;">
+    </div>
+    <!-- Footer -->
+    <section th:replace="~{fragments/footer :: siteFooter}"></section>
+    </div>
+</body>
+
+</html>

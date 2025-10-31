@@ -20,7 +20,7 @@
             margin-bottom: 10px;
         }
         .welcome p.lead {
-            color: #555;
+            color: var(--muted);
             margin-bottom: 18px;
             line-height: 1.6;
         }
@@ -29,18 +29,12 @@
             gap:12px;
             margin-top:16px;
         }
-        .btn-ghost {
-            background: transparent;
-            border: 2px solid rgba(102,126,234,0.12);
-            color: #333;
-            padding: 10px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight:600;
-        }
     </style>
 </head>
 <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    
+    <div class="centered">
     <section class="welcome">
         <h1>Assessment 2 Wiki</h1>
         <p class="lead">Welcome to the BIT235 Assessment 2 Wiki. This site hosts articles. Use the links below to browse pages or manage your account.</p>
@@ -53,7 +47,7 @@
 
         <hr style="margin-top:22px; border:none; border-top:1px solid #eee;">
         <!-- Footer -->
-        <p style="margin-top:18px; color:#666; font-size:14px;">&copy; 2025 Melbourne Polytechnic - BIT235</p>
-    </section>
+        <section th:replace="~{fragments/footer :: siteFooter}"></section>
+    </div>
 </body>
 </html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <header th:replace="fragments/navbar :: navbar"></header>
+
+    <main class="container articles-container">
+            <div class="page-header">
+                <div>
+                    <h1>Articles</h1>
+                    <p class="muted">Browse the latest articles and guides</p>
+                </div>
+
+                <form class="search-bar" method="get" th:action="@{/articles}">
+                    <input type="text" name="q" placeholder="Search articles..." th:value="${param.q}">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="articles-grid">
+                <div th:each="a : ${articles}" class="article-card">
+                    <div class="article-card-content">
+                        <h2 class="article-title" th:text="${a.title}">Article Title</h2>
+
+                        <p class="article-summary" th:if="${a.summary != null}" th:text="${a.summary}"></p>
+                        <p class="article-summary" th:if="${a.summary == null}" th:text="${#strings.abbreviate(a.content,150)}"></p>
+
+                        <div class="card-footer">
+                            <a class="read-more" th:href="@{'/article/' + ${a.id}}">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <section th:replace="fragments/footer :: siteFooter"></section>
+</body>
+
+</html>

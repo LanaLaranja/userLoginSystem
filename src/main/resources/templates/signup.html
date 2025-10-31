@@ -10,9 +10,12 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="centered">
     <section>
             <div th:if="${param.registered}">
-                <div class="alert alert-success" style="color: #206a2f; text-align:center; margin-bottom:12px;">Registration successful — please log in.</div>
+                <div class="alert alert-success" style="color: #206a2f; text-align:center; margin-bottom:12px;">Registration successful  please log in.</div>
             </div>
     <form th:action="@{/signup}" th:method="post"> <!-- Signup Form -->
             <h1>Create Account</h1>
@@ -43,5 +46,6 @@
             </div>
         </form>
     </section>
+    </div>
 </body>
 </html>

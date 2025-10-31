@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 
@@ -74,6 +74,31 @@
 
 	<build>
 		<plugins>
+			<!-- Configure compiler plugin to use Java 21 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+			<!-- Optionally configure toolchains if multiple JDKs are used on the machine -->
+			<!--
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-toolchains-plugin</artifactId>
+			  <version>3.1.0</version>
+			  <configuration>
+			    <toolchains>
+			      <jdk>
+			        <version>21</version>
+			        <vendor>oracle</vendor>
+			      </jdk>
+			    </toolchains>
+			  </configuration>
+			</plugin>
+			-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

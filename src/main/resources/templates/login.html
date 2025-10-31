@@ -10,10 +10,13 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="centered">
     <section>
         <!-- Message in case of error in login -->
         <div th:if="${param.error}">
-            <div class="alert alert-danger" style="color: #b23131; text-align:center; margin-bottom:12px;">Login failed — check your credentials and try again.</div>
+            <div class="alert alert-danger" style="color: #b23131; text-align:center; margin-bottom:12px;">Login failed  check your credentials and try again.</div>
         </div>
 
         <form th:action="@{/login}" th:method="post">
@@ -41,5 +44,6 @@
             </div>
         </form>
     </section>
+    </div>
 </body>
 </html>
