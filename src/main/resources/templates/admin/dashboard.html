@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header th:replace="fragments/navbar :: navbar"></header>
+
+    <main class="container articles-container">
+        <div class="page-header">
+            <div>
+                <h1>Admin Console</h1>
+                <p class="muted">Manage articles and categories</p>
+            </div>
+
+            <div>
+                <a th:href="@{/admin/articles/new}" class="btn">+ New Article</a>
+            </div>
+        </div>
+
+        <div class="articles-grid">
+            <!-- Articles column: show each article as a card for consistency -->
+            <div class="article-card" th:each="a : ${articles}">
+                <div class="article-card-content">
+                    <h3 class="article-title" th:text="${a.title}">Article title</h3>
+                    <p class="article-summary" th:text="${#strings.abbreviate(a.content,120)}">Summary</p>
+                    <div class="card-footer">
+                        <a class="read-more" th:href="@{'/admin/articles/edit/' + ${a.id}}">Edit</a>
+                        &nbsp;|&nbsp;
+                        <a class="read-more" th:href="@{'/admin/articles/delete/' + ${a.id}}" onclick="return confirm('Are you sure you want to delete this article?');">Delete</a>
+                        &nbsp;|&nbsp;
+                        <a class="read-more" th:href="@{'/admin/articles/toggleVisibility/' + ${a.id}}" th:text="${a.visible} ? 'Hide' : 'Show'">Toggle</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories card (kept as a single card to the side on wide screens) -->
+            <div class="article-card">
+                <div class="article-card-content">
+                    <h3 class="article-title">Categories</h3>
+                    <form th:action="@{/admin/categories/save}" method="post" style="display:flex;gap:8px;">
+                        <input type="text" name="name" placeholder="New Category" required style="flex:1;padding:10px;border-radius:8px;border:1px solid #e7d7de;">
+                        <button type="submit" style="width:auto;padding:10px 14px;">Add</button>
+                    </form>
+
+                    <ul style="margin-top:12px;list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;">
+                        <li th:each="c : ${categories}" style="display:flex;justify-content:space-between;align-items:center;">
+                            <span th:text="${c.name}">Category name</span>
+                            <a class="read-more" th:href="@{'/admin/categories/delete/' + ${c.id}}" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <section th:replace="fragments/footer :: siteFooter"></section>
+</body>
+</html>

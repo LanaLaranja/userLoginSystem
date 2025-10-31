@@ -1,3 +1,8 @@
+// Alana Cristina Muller S1569092
+/* Model: Article
+ - JPA entity representing an article. Added convenience accessors used by
+     Thymeleaf templates and service layer.
+*/
 package com.cloudtechsolutions.wiki.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +19,7 @@ public class Article {
     private String content;
     private String keywords;
     private LocalDateTime createdAt = LocalDateTime.now();
+    private boolean visible = true;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -76,5 +82,13 @@ public class Article {
         int max = 150;
         if (this.content.length() <= max) return this.content;
         return this.content.substring(0, max) + "...";
+    }
+
+    public boolean isVisible() {
+        return this.visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

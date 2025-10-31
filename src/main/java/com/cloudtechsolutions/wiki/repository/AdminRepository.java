@@ -1,5 +1,10 @@
 // Alana Cristina Muller S1569092
 /* Admin Repository - This interface handles database operations for Admin entities */
+// Alana Cristina Muller S1569092
+/* Repository: AdminRepository
+ - Repository for Admin (user) accounts. Used by the security layer to load
+     users for authentication.
+*/
 package com.cloudtechsolutions.wiki.repository;
 
 import com.cloudtechsolutions.wiki.model.Admin;

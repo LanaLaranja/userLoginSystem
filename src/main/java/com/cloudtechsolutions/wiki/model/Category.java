@@ -1,3 +1,8 @@
+// Alana Cristina Muller S1569092
+/* Model: Category
+ - Represents an article category. Categories are referenced by articles and
+     used for filtering on the public site.
+*/
 package com.cloudtechsolutions.wiki.model;
 import jakarta.persistence.*;
 

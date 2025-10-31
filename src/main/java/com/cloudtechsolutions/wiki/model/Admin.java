@@ -1,5 +1,10 @@
 //Alana Cristina Muller S1569092
 /* Admin Model - This model represents an admin user in the system, including fields for id, name, email, and password. */
+// Alana Cristina Muller S1569092
+/* Model: Admin
+ - Represents an administrative user. Used by Spring Security for authentication
+     and by AdminService to manage users.
+*/
 package com.cloudtechsolutions.wiki.model;
 
 //Jakarta is used instead of javax for JPA in Spring Boot 3+

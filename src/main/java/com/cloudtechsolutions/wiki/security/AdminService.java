@@ -1,5 +1,10 @@
 // Alana Cristina Muller S1569092
 /* Admin Service - This service handles business logic related to Admin entities, including authentication and registration */
+// Alana Cristina Muller S1569092
+/* Service: AdminService
+ - Provides user details for Spring Security and helper methods for user
+     administration.
+*/
 package com.cloudtechsolutions.wiki.security;
 
 import com.cloudtechsolutions.wiki.model.Admin;

@@ -1,5 +1,10 @@
 // Alana Cristina Muller S1569092
 /* Security Configuration - This class sets up Spring Security for the application, defining authentication and authorization rules */
+// Alana Cristina Muller S1569092
+/* Security: SecurityConfig
+ - Configures Spring Security for the application. Allows anonymous access to
+     public pages and static resources while protecting /admin/** endpoints.
+*/
 package com.cloudtechsolutions.wiki.security;
 
 import com.cloudtechsolutions.wiki.model.Admin;
@@ -9,9 +14,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 
 // Spring Security configuration class
 @Configuration
@@ -29,32 +36,33 @@ public class SecurityConfig {
         // HTTP security configuration: protect all endpoints by default,
         // allow anonymous access to static resources and signup endpoints,
         // configure the login page and redirect URLs.
-        http
-
-                
-                .authorizeHttpRequests(auth -> auth
-                // allow unauthenticated access to common static resource folders
-                .requestMatchers(
-                    "/",
-                    "/error",
-                    "/articles",
-                    "/articles/**",
-                    "/article",
-                    "/article/**",
-                    "/categories",
-                    "/categories/**",
-                    "/css/**",
-                    "/js/**",
-                    "/images/**",
-                    "/webjars/**",
-                    "/favicon.ico",
-                    "/signup",
-                    "/register").permitAll()
-                .anyRequest().authenticated()
-                )
+    http
+        .authorizeHttpRequests(auth -> auth
+            // Allow anonymous GET access to public pages and static resources
+            .requestMatchers(HttpMethod.GET,
+                "/",
+                "/error",
+                "/articles",
+                "/articles/**",
+                "/article",
+                "/article/**",
+                "/categories",
+                "/categories/**",
+                "/css/**",
+                "/js/**",
+                "/images/**",
+                "/webjars/**",
+                "/favicon.ico").permitAll()
+            // Allow anonymous access to signup/register (POSTs too)
+            .requestMatchers("/signup", "/register").permitAll()
+            // Admin endpoints require ADMIN role
+            .requestMatchers("/admin/**").hasRole("ADMIN")
+            // everything else requires auth
+            .anyRequest().authenticated()
+        )
                 .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/welcome", true)
+                .defaultSuccessUrl("/admin", true)
                 // on failure, return to the login page with an error flag so we can render a message
                 .failureUrl("/login?error=true")
                 .permitAll()

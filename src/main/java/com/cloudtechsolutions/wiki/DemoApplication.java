@@ -1,6 +1,10 @@
 //Alana Cristina Muller S1569092
 /* Main Application Class - This class bootstraps the Spring Boot application */
 
+// Alana Cristina Muller S1569092
+/* Application: DemoApplication
+ - Entry point for the Spring Boot application.
+*/
 package com.cloudtechsolutions.wiki;
 
 import org.springframework.boot.SpringApplication;

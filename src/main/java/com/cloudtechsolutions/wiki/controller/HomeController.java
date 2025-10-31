@@ -1,3 +1,13 @@
+// Alana Cristina Muller S1569092
+/* Controller: HomeController
+ - Handles public pages: homepage, categories and articles listing.
+ - Uses the ArticleService to provide public (visible-only) article lists.
+*/
+// Alana Cristina Muller S1569092
+/* Controller: HomeController
+ - Serves the home page and article listing. Uses ArticleService public APIs
+     to ensure only visible articles are shown to anonymous users.
+*/
 package com.cloudtechsolutions.wiki.controller;
 
 import org.springframework.stereotype.Controller;
@@ -38,7 +48,8 @@ public class HomeController {
         } else if (categoryId != null) {
             model.addAttribute("articles", articleService.getArticlesByCategory(categoryId));
         } else {
-            model.addAttribute("articles", articleService.getAllArticles());
+            // public-facing list: only visible articles
+            model.addAttribute("articles", articleService.getPublicArticles());
         }
         return "articles";
     }

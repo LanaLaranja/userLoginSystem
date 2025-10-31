@@ -15,7 +15,6 @@
         <div class="page-header">
             <div>
                 <h1>Categories</h1>
-                <p class="muted">Browse categories to filter articles</p>
             </div>
         </div>
 
@@ -23,11 +22,8 @@
             <div th:each="c : ${categories}" class="category-card article-card">
                 <div class="article-card-content">
                     <h3 class="article-title" th:text="${c.name}">Category</h3>
-                    <div class="card-footer">
-                        <a class="read-more" th:href="@{'/articles?category=' + ${c.id}}">View articles</a>
-                    </div>
                 </div>
-                
+
             </div>
         </div>
     </main>

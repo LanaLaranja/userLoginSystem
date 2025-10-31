@@ -1,5 +1,14 @@
 // Alana Cristina Muller S1569092
 /* Signup Controller - this controller handles user signup via the /signup endpoint */
+// Alana Cristina Muller S1569092
+/* Controller: SignupController
+ - Displays the signup form and accepts registration submissions.
+ - Note: password hashing and user creation are delegated to the AdminService.
+*/
+// Alana Cristina Muller S1569092
+/* Controller: SignupController
+ - Handles user signup view and form submission for creating admin users.
+*/
 package com.cloudtechsolutions.wiki.controller;
 
 import com.cloudtechsolutions.wiki.security.AdminService;

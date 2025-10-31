@@ -1,3 +1,13 @@
+// Alana Cristina Muller S1569092
+/* Controller: ArticleController
+ - Responsible for displaying a single article page.
+ - Returns a friendly error page when the requested article cannot be found.
+*/
+// Alana Cristina Muller S1569092
+/* Controller: ArticleController
+ - Public-facing controller to view articles. Defensive checks added to avoid
+     template runtime exceptions when an article is not found.
+*/
 package com.cloudtechsolutions.wiki.controller;
 
 import org.springframework.stereotype.Controller;
